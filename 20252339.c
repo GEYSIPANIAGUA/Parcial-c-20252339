@@ -124,6 +124,7 @@ printf("COLUMNAS");
 
 for (j = 0; j < M; j++) {
     printf(" %d", eventosColumna[j]);
+}
 printf("\n");
 printf("PRIORIDAD %d\n", prioridad);
 printf("COLUMNA %d\n", columnaDestacada);
