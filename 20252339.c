@@ -3,6 +3,13 @@ int main(void) {
 int N, M, L, U;
 int matriz [30][30]; 
 int i, j;
+int sumaColumna[30] = {0};
+int eventosFila[30] = {0};
+int impactoFila[30] = {0};
+int eventosColumna[30] = {0};
+int x;
+int SC;
+int impacto;
 scanf("%d %d %d %d", &N, &M, &L, &U);
 if (N < 1 || N > 30 || M < 1 || M > 30) {
     printf("ERROR\n");
@@ -21,5 +28,21 @@ for (i = 0; i < N; i++) {
         }
     }
 }
+for (i = 0; i < N; i++) {
+    for (j = 0; j < M; j++) {
+
+        x = matriz[i][j];
+        SC = sumaColumna[j];
+
+        if (SC - N * x >= N * L && x <= U) {
+            impacto = SC - N * x + 1;
+
+            eventosFila[i]++;
+            impactoFila[i] += impacto;
+            eventosColumna[j]++;
+      }
+    }  
+}
 return 0;
+
 }
