@@ -7,6 +7,10 @@ int sumaColumna[30] = {0};
 int eventosFila[30] = {0};
 int impactoFila[30] = {0};
 int eventosColumna[30] = {0};
+int rachaFila[30] = {0};
+int inicioFila[30] = {0};
+int rachaActual;
+int inicioActual;
 int x;
 int SC;
 int impacto;
@@ -28,21 +32,45 @@ for (i = 0; i < N; i++) {
         }
     }
 }
+for (j = 0; j < M; j++) {
+    for (i = 0; i < N; i++) {
+        sumaColumna[j] += matriz[i][j];
+    }
+}
 for (i = 0; i < N; i++) {
+
+    rachaActual = 0;
+    inicioActual = 0;
+
     for (j = 0; j < M; j++) {
 
         x = matriz[i][j];
         SC = sumaColumna[j];
 
         if (SC - N * x >= N * L && x <= U) {
+
             impacto = SC - N * x + 1;
 
             eventosFila[i]++;
             impactoFila[i] += impacto;
             eventosColumna[j]++;
-      }
-    }  
+
+            rachaActual++;
+
+            if (rachaActual == 1) {
+                inicioActual = j + 1;
+            }
+
+            if (rachaActual > rachaFila[i]) {
+                rachaFila[i] = rachaActual;
+                inicioFila[i] = inicioActual;
+            }
+
+        } else {
+            rachaActual = 0;
+            inicioActual = 0;
+        }
+    }
 }
 return 0;
-
 }
